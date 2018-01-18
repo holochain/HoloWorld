@@ -1,0 +1,25 @@
+{
+    "Tests": [
+        {
+            "Convey": "We can create a new entry in the HoloWorld app",
+            "Zome": "HoloWorld",
+            "FnName": "entryCreate",
+            "Input": {
+                "content": "this is the entry body",
+                "stamp": 12345
+            },
+            "Output": "\"%h1%\"",
+            "Err": "",
+            "Regexp": "",
+            "Time": 0,
+            "Wait": 0,
+            "Exposure": "public",
+            "Raw": false,
+            "Repeat": 0
+        }
+    ],
+    "Identity": "",
+    "Fixtures": {
+        "Agents": null
+    }
+}

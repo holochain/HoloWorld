@@ -1,0 +1,22 @@
+{
+    "Tests": [
+        {
+            "Convey": "add speaker test here",
+            "Zome": "",
+            "FnName": "",
+            "Input": null,
+            "Output": null,
+            "Err": "",
+            "Regexp": "",
+            "Time": 0,
+            "Wait": 0,
+            "Exposure": "",
+            "Raw": false,
+            "Repeat": 0
+        }
+    ],
+    "Identity": "",
+    "Fixtures": {
+        "Agents": null
+    }
+}
