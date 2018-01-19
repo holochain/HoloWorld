@@ -28,9 +28,9 @@ function genesis() {
  */
 function validateCommit (entryName, entry, header, pkg, sources) {
   switch (entryName) {
-    case "sampleEntry":
+    case 'entry':
       // validation code here
-      return false;
+      return true;
     default:
       // invalid entry name!!
       return false;
@@ -48,10 +48,10 @@ function validateCommit (entryName, entry, header, pkg, sources) {
  */
 function validatePut (entryName, entry, header, pkg, sources) {
   switch (entryName) {
-    case "sampleEntry":
+    case 'entry':
       // validation code here
       return false;
-default:
+    default:
       // invalid entry name!!
       return false;
   }
@@ -69,9 +69,9 @@ default:
  */
 function validateMod (entryName, entry, header, replaces, pkg, sources) {
   switch (entryName) {
-    case "sampleEntry":
+    case 'entry':
       // validation code here
-      return false;
+      return true;
     default:
       // invalid entry name!!
       return false;
@@ -88,9 +88,9 @@ function validateMod (entryName, entry, header, replaces, pkg, sources) {
  */
 function validateDel (entryName,hash, pkg, sources) {
   switch (entryName) {
-    case "sampleEntry":
+    case 'entry':
       // validation code here
-return false;
+    return false;
     default:
       // invalid entry name!!
       return false;
@@ -103,7 +103,7 @@ return false;
  * @return {*} the data required for validation
  */
 function validatePutPkg (entryName) {
-  return null;
+  return true;
 }
 
 /**
@@ -122,4 +122,19 @@ function validateModPkg (entryName) {
  */
 function validateDelPkg (entryName) {
   return null;
+}
+
+/**
+ * Called to get the data needed to validate
+ * @param {string} entryName - the name of entry to validate
+ * @return {*} the data required for validation
+ */
+
+function getMe () {
+  return App.Key.Hash
+}
+
+function entryCreate (entry) {
+  var key = commit('entry', entry)        // Commits the entry block to my source chain, assigns resulting hash to 'key'
+  return key
 }
