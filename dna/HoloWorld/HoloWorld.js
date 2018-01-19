@@ -130,11 +130,18 @@ function validateDelPkg (entryName) {
  * @return {*} the data required for validation
  */
 
-function getMe () {
-  return App.Key.Hash
-}
-
 function entryCreate (entry) {
   var key = commit('entry', entry)        // Commits the entry block to my source chain, assigns resulting hash to 'key'
+  debug(key)
   return key
 }
+
+// function entryRead (params) {
+//   var entry, rawEntry = get(params.entryHash, {GetMask: HC.GetMask.All})
+//     entry = {
+//       entry: JSON.parse(rawEntry.Entry),
+//       author: rawEntry.Sources[0],
+//       H: params.entryHash
+//     }
+//   return entry
+// }

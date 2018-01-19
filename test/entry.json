@@ -16,6 +16,22 @@
             "Exposure": "public",
             "Raw": false,
             "Repeat": 0
+        },
+        {
+            "Convey": "We can read the last entry in the HoloWorld app",
+            "Zome": "HoloWorld",
+            "FnName": "entryRead",
+            "Input": {
+                "entryHash": "%h1"
+            },
+            "Output": {"H":"%h1%","author":"%key%","entryName":{"content":"this is the entry body","stamp":123456}},
+            "Err": "",
+            "Regexp": "",
+            "Time": 0,
+            "Wait": 0,
+            "Exposure": "public",
+            "Raw": false,
+            "Repeat": 0
         }
     ],
     "Identity": "",

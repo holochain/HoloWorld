@@ -1,1 +1,11 @@
-<html><body>Your UI here!</body></html>
+<html>
+  <head>
+    <script type="text/javascript" src="/HoloWorld.js"></script>
+  </head>
+  <body>
+    <form>
+      <input type="text" id="content" value="This text will be saved in Holochain" />
+      <button type="submit" onclick="entryCreate(document.getElementById('content').value)">Submit</button>
+    </form>
+  </body>
+</html>
