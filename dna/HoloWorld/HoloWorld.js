@@ -50,7 +50,7 @@ function validatePut (entryName, entry, header, pkg, sources) {
   switch (entryName) {
     case 'entry':
       // validation code here
-      return false;
+      return true;
     default:
       // invalid entry name!!
       return false;
@@ -132,16 +132,19 @@ function validateDelPkg (entryName) {
 
 function entryCreate (entry) {
   var key = commit('entry', entry)        // Commits the entry block to my source chain, assigns resulting hash to 'key'
+  if (!isErr(key)) {
+    commit('entry_links', {Links: [{Base: App.DNA.Hash, Link: key, Tag: 'entry'}]})
+  }
   debug(key)
   return key
 }
 
-// function entryRead (params) {
-//   var entry, rawEntry = get(params.entryHash, {GetMask: HC.GetMask.All})
-//     entry = {
-//       entry: JSON.parse(rawEntry.Entry),
-//       author: rawEntry.Sources[0],
-//       H: params.entryHash
-//     }
-//   return entry
-// }
+function entryRead (key) {
+  var json = get(key)
+  var entry = JSON.parse(json)
+  return entry
+}
+
+function isErr (result) {
+  return ((typeof result === 'object') && result.name === 'HolochainError')
+}
