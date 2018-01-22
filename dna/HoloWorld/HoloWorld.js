@@ -29,6 +29,7 @@ function genesis() {
 function validateCommit (entryName, entry, header, pkg, sources) {
   switch (entryName) {
     case 'entry':
+    case 'entry_links':
       // validation code here
       return true;
     default:
@@ -98,12 +99,29 @@ function validateDel (entryName,hash, pkg, sources) {
 }
 
 /**
+ * Called to validate any changes to the DHT
+ * @param {?} pkg - ?
+ * @param {?} sources - ?
+ * @return {boolean} is valid?
+ */
+function validateLink (linkEntryType, baseHash, links, pkg, sources) {
+    switch (linkEntryType) {
+    case "entry_links":
+        // validation code here
+        return true;
+    default:
+        // invalid entry name!!
+        return false;
+    }
+}
+
+/**
  * Called to get the data needed to validate
  * @param {string} entryName - the name of entry to validate
  * @return {*} the data required for validation
  */
 function validatePutPkg (entryName) {
-  return true;
+  return null;
 }
 
 /**
@@ -132,15 +150,18 @@ function validateDelPkg (entryName) {
 
 function entryCreate (entry) {
   var key = commit('entry', entry)        // Commits the entry block to my source chain, assigns resulting hash to 'key'
+
   if (!isErr(key)) {
-    commit('entry_links', {Links: [{Base: App.DNA.Hash, Link: key, Tag: 'entry'}]})
+      var link_key = commit('entry_links', {Links: [{Base: App.DNA.Hash, Link: key, Tag: 'entry'}]})
+      debug(link_key)
   }
   debug(key)
   return key
 }
 
 function entryRead (key) {
-  var json = get(key)
+    var json = get(key)
+    debug(json)
   var entry = JSON.parse(json)
   return entry
 }

@@ -8,15 +8,15 @@
                 "content": "this is the entry body",
                 "timestamp": 123456
             },
-            "Output": "%h%",
+            "Output": "%h1%",
             "Exposure": "public"
         },
         {
             "Convey": "We can read the last entry in the HoloWorld app",
             "Zome": "HoloWorld",
             "FnName": "entryRead",
-            "Input": "%h1",
-            "Output": {"content":"this is the entry body","stamp":123456},
+            "Input": "%h1%",
+            "Output": {"content":"this is the entry body","timestamp":123456},
             "Exposure": "public"
         }
     ],
