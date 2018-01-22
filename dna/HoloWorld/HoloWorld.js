@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 // -----------------------------------------------------------------
 //  This stub Zome code file was auto-generated
@@ -8,9 +8,9 @@
  * Called only when your source chain is generated
  * @return {boolean} success
  */
-function genesis() {
+function genesis () {
   // any genesis code here
-  return true;
+  return true
 }
 
 // -----------------------------------------------------------------
@@ -30,10 +30,13 @@ function validateCommit (entryName, entry, header, pkg, sources) {
   switch (entryName) {
     case 'entry':
       // validation code here
-      return true;
+      return true
+    case 'entry_links':
+            // validation code here
+      return true
     default:
       // invalid entry name!!
-      return false;
+      return false
   }
 }
 
@@ -50,10 +53,13 @@ function validatePut (entryName, entry, header, pkg, sources) {
   switch (entryName) {
     case 'entry':
       // validation code here
-      return true;
+      return true
+    case 'entry_links':
+      // validation code here
+      return true
     default:
       // invalid entry name!!
-      return false;
+      return false
   }
 }
 
@@ -71,10 +77,10 @@ function validateMod (entryName, entry, header, replaces, pkg, sources) {
   switch (entryName) {
     case 'entry':
       // validation code here
-      return true;
+      return true
     default:
       // invalid entry name!!
-      return false;
+      return false
   }
 }
 
@@ -86,14 +92,14 @@ function validateMod (entryName, entry, header, replaces, pkg, sources) {
  * @param {?} sources - ?
  * @return {boolean} is valid?
  */
-function validateDel (entryName,hash, pkg, sources) {
+function validateDel (entryName, hash, pkg, sources) {
   switch (entryName) {
     case 'entry':
       // validation code here
-    return false;
+      return false
     default:
       // invalid entry name!!
-      return false;
+      return false
   }
 }
 
@@ -103,7 +109,7 @@ function validateDel (entryName,hash, pkg, sources) {
  * @return {*} the data required for validation
  */
 function validatePutPkg (entryName) {
-  return true;
+  return true
 }
 
 /**
@@ -133,16 +139,35 @@ function validateDelPkg (entryName) {
 function entryCreate (entry) {
   var key = commit('entry', entry)        // Commits the entry block to my source chain, assigns resulting hash to 'key'
   if (!isErr(key)) {
-    commit('entry_links', {Links: [{Base: App.DNA.Hash, Link: key, Tag: 'entry'}]})
+    console.log('entry_links' + commit('entry_links', {Links: [{Base: App.DNA.Hash, Link: key, Tag: 'entry'}]}))
+  } else {
+    console.log('entry_links' + isErr(key))
   }
   debug(key)
   return key
 }
 
 function entryRead (key) {
+  console.log('App.DNA.Hash ' + App.DNA.Hash)
+
+  console.log('key ' + key)
   var json = get(key)
   var entry = JSON.parse(json)
   return entry
+}
+
+/**
+ * Called to get the hash of the first created array
+ * @return {array} the list of entries
+ */
+function getEntries () {
+  var lks = getLinks(App.DNA.Hash, 'entry')
+  console.log('lks ' + lks)
+  if (isErr(lks)) {
+    return ''
+  }
+
+  return lks
 }
 
 function isErr (result) {

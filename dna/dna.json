@@ -22,6 +22,10 @@
                     "Schema": "",
                     "SchemaFile": "entry.json",
                     "Sharing": "public"
+                },
+                {
+                    "Name": "entry_links",
+                    "DataFormat": "links"
                 }
             ],
             "RibosomeType": "js",
@@ -33,6 +37,11 @@
                 },
                 {
                     "Name": "entryRead",
+                    "CallingType": "json",
+                    "Exposure": "public"
+                },
+                {
+                    "Name": "getEntries",
                     "CallingType": "json",
                     "Exposure": "public"
                 }
