@@ -26,14 +26,14 @@ function taskRead (hash) {
   xhr.send(data)
 }
 
-function getTasks () {
+function getTasks (callback) {
   var xhr = new XMLHttpRequest()
   var url = '/fn/HoloWorld/getTasks'
   xhr.open('POST', url, true)
   xhr.setRequestHeader('Content-type', 'application/json')
   xhr.onreadystatechange = function () {
     if (xhr.readyState === 4 && xhr.status === 200) {
-      console.log(xhr.responseText)
+      callback(JSON.parse(xhr.responseText))
     }
   }
   xhr.send()
