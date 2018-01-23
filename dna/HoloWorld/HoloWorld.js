@@ -136,21 +136,39 @@ function validateDelPkg (entryName) {
  * @return {*} the data required for validation
  */
 
+ /**
+ * Called to validate any changes to the DHT
+ * @param {?} pkg - ?
+ * @param {?} sources - ?
+ * @return {boolean} is valid?
+ */
+function validateLink (linkEntryType, baseHash, links, pkg, sources) {
+  switch (linkEntryType) {
+    case 'entry_links':
+      // validation code here
+      return true
+    default:
+      // invalid entry name!!
+      return false
+  }
+}
+
 function entryCreate (entry) {
+  debug('App.DNA.Hash ' + App.DNA.Hash)
   var key = commit('entry', entry)        // Commits the entry block to my source chain, assigns resulting hash to 'key'
   if (!isErr(key)) {
-    console.log('entry_links' + commit('entry_links', {Links: [{Base: App.DNA.Hash, Link: key, Tag: 'entry'}]}))
+    debug('entry_links' + commit('entry_links', {Links: [{Base: App.DNA.Hash, Link: key, Tag: 'entry'}]}))
   } else {
-    console.log('entry_links' + isErr(key))
+    debug('entry_links' + isErr(key))
   }
   debug(key)
   return key
 }
 
 function entryRead (key) {
-  console.log('App.DNA.Hash ' + App.DNA.Hash)
+  debug('App.DNA.Hash ' + App.DNA.Hash)
 
-  console.log('key ' + key)
+  debug('key ' + key)
   var json = get(key)
   var entry = JSON.parse(json)
   return entry
@@ -161,8 +179,8 @@ function entryRead (key) {
  * @return {array} the list of entries
  */
 function getEntries () {
-  var lks = getLinks(App.DNA.Hash, 'entry')
-  console.log('lks ' + lks)
+  var lks = getLinks(App.DNA.Hash, 'entry', {Load: true})
+  debug('lks ' + lks)
   if (isErr(lks)) {
     return ''
   }

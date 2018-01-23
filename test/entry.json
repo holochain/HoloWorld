@@ -20,19 +20,11 @@
             "Exposure": "public"
         },
         {
-            "Convey": "The last entry is the link between the entry and the DNA Hash",
-            "Zome": "HoloWorld",
-            "FnName": "entryRead",
-            "Input": "QmSfmDpavE7WpBzNen7gHAvXqjr3b7WhKndHbHiAipGGKm",
-            "Output": "",
-            "Exposure": "public"
-        },
-        {
             "Convey": "you can get the list of entries",
             "Zome": "HoloWorld",
             "FnName": "getEntries",
             "Input": "",
-            "Output": [{"content":"this is the entry body","timestamp":123456}],
+            "Output": [{"Entry":{"content":"this is the entry body","timestamp":123456},"EntryType":"entry","Hash":"%h1%","Source":"%key%"}],
             "Exposure": "public"
         }
     ],
