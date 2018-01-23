@@ -1,0 +1,46 @@
+{
+    "Tests": [
+        {
+            "Convey": "We can create a new task in the HoloWorld app",
+            "Zome": "HoloWorld",
+            "FnName": "taskCreate",
+            "Input": {
+                "content": "This is the first task",
+                "timestamp": 123456
+            },
+            "Output": "%h1%",
+            "Exposure": "public"
+        },
+        {
+            "Convey": "We can read the last task in the HoloWorld app",
+            "Zome": "HoloWorld",
+            "FnName": "taskRead",
+            "Input": "%h1%",
+            "Output": {"content":"This is the first task","timestamp":123456},
+            "Exposure": "public"
+        },
+        {
+            "Convey": "We can add another task in the HoloWorld app",
+            "Zome": "HoloWorld",
+            "FnName": "taskCreate",
+            "Input": {
+                "content": "The second task",
+                "timestamp": 123456
+            },
+            "Output": "%h1%",
+            "Exposure": "public"
+        },
+        {
+            "Convey": "We can get the list of tasks",
+            "Zome": "HoloWorld",
+            "FnName": "getTasks",
+            "Input": "",
+            "Output": [{"Entry":{"content":"This is the first task","timestamp":123456},"EntryType":"task","Hash":"%h3%","Source":"%key%"},{"Entry":{"content":"The second task","timestamp":123456},"EntryType":"task","Hash":"%h1%","Source":"%key%"}],
+            "Exposure": "public"
+        }
+    ],
+    "Identity": "",
+    "Fixtures": {
+        "Agents": null
+    }
+}

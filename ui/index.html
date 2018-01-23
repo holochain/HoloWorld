@@ -4,8 +4,33 @@
   </head>
   <body>
     <form>
-      <input type="text" id="content" value="This text will be saved in Holochain" />
-      <button type="submit" onclick="entryCreate(document.getElementById('content').value)">Submit</button>
+      <p>Enter the content for the name of the task</p>
+      <label for="task">Task</label>
+      <input type="text" id="task" value="This task text will be saved in Holochain" />
+      <button type="submit" id="taskSubmit">Submit</button>
     </form>
+
+    <form>
+      <p>Open the Developer Console and copy the hash key</p>
+      <label for="hash">Hash</label>
+      <input type="text" id="hash" />
+      <button type="submit" id="taskRead">Read</button>
+    </form>
+
+    <form>
+      <button type="submit" id="taskRead">List</button>
+
+    </form>
+
+    <script type="text/javascript">
+      document.getElementById("taskSubmit").addEventListener("click", function(event){
+          event.preventDefault()
+          taskCreate(document.getElementById('task').value)
+      });
+      document.getElementById("taskRead").addEventListener("click", function(event){
+          event.preventDefault()
+          taskRead(document.getElementById('hash').value)
+      });
+    </script>
   </body>
 </html>

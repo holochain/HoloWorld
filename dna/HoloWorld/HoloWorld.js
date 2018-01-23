@@ -28,10 +28,10 @@ function genesis () {
  */
 function validateCommit (entryName, entry, header, pkg, sources) {
   switch (entryName) {
-    case 'entry':
+    case 'task':
       // validation code here
       return true
-    case 'entry_links':
+    case 'task_links':
             // validation code here
       return true
     default:
@@ -51,10 +51,10 @@ function validateCommit (entryName, entry, header, pkg, sources) {
  */
 function validatePut (entryName, entry, header, pkg, sources) {
   switch (entryName) {
-    case 'entry':
+    case 'task':
       // validation code here
       return true
-    case 'entry_links':
+    case 'task_links':
       // validation code here
       return true
     default:
@@ -75,7 +75,7 @@ function validatePut (entryName, entry, header, pkg, sources) {
  */
 function validateMod (entryName, entry, header, replaces, pkg, sources) {
   switch (entryName) {
-    case 'entry':
+    case 'task':
       // validation code here
       return true
     default:
@@ -94,7 +94,7 @@ function validateMod (entryName, entry, header, replaces, pkg, sources) {
  */
 function validateDel (entryName, hash, pkg, sources) {
   switch (entryName) {
-    case 'entry':
+    case 'task':
       // validation code here
       return false
     default:
@@ -144,7 +144,7 @@ function validateDelPkg (entryName) {
  */
 function validateLink (linkEntryType, baseHash, links, pkg, sources) {
   switch (linkEntryType) {
-    case 'entry_links':
+    case 'task_links':
       // validation code here
       return true
     default:
@@ -153,39 +153,46 @@ function validateLink (linkEntryType, baseHash, links, pkg, sources) {
   }
 }
 
-function entryCreate (entry) {
+/*
+This function saves the task object to your local chain and returns the hash
+With that new hash it then creates and entry in the DHT that links the new task object to the
+Hash of the application's DNA. This allows us to retrieve all of the "task" objects from the DHT when we
+call getTasks below.
+The debugs are to show on the terminal screen the hashes and any errors.
+*/
+function taskCreate (task) {
   debug('App.DNA.Hash ' + App.DNA.Hash)
-  var key = commit('entry', entry)        // Commits the entry block to my source chain, assigns resulting hash to 'key'
-  if (!isErr(key)) {
-    debug('entry_links' + commit('entry_links', {Links: [{Base: App.DNA.Hash, Link: key, Tag: 'entry'}]}))
+  var hash = commit('task', task)        // Commits the entry block to my source chain, assigns resulting hash to 'key'
+  if (!isErr(hash)) {
+    debug('task_links ' + commit('task_links', {Links: [{Base: App.DNA.Hash, Link: hash, Tag: 'task'}]}))
   } else {
-    debug('entry_links' + isErr(key))
+    debug('task_links ' + isErr(hash))
   }
-  debug(key)
-  return key
+  debug(hash)
+  return hash
+}
+/*
+The taskRead function uses the hash key of the commited object to get the object from your local chain
+and return it as a task object.
+*/
+function taskRead (hash) {
+  debug('hash ' + hash)
+  var json = get(hash)
+  var task = JSON.parse(json)
+  return task
 }
 
-function entryRead (key) {
-  debug('App.DNA.Hash ' + App.DNA.Hash)
-
-  debug('key ' + key)
-  var json = get(key)
-  var entry = JSON.parse(json)
-  return entry
-}
-
-/**
- * Called to get the hash of the first created array
- * @return {array} the list of entries
- */
-function getEntries () {
-  var lks = getLinks(App.DNA.Hash, 'entry', {Load: true})
-  debug('lks ' + lks)
-  if (isErr(lks)) {
-    return ''
+/*
+This function returns all of the task objects linked the DNA hash for the App.
+The {Load: true} arugment tells Holochain to load the data and not just the
+hashes for the objects.
+*/
+function getTasks () {
+  var result = getLinks(App.DNA.Hash, 'task', {Load: true})
+  if (isErr(result)) {
+    return []
   }
-
-  return lks
+  return result
 }
 
 function isErr (result) {

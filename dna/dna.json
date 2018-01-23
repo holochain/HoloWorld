@@ -17,31 +17,31 @@
             "CodeFile": "HoloWorld.js",
             "Entries": [
                 {
-                    "Name": "entry",
+                    "Name": "task",
                     "DataFormat": "json",
                     "Schema": "",
-                    "SchemaFile": "entry.json",
+                    "SchemaFile": "task.json",
                     "Sharing": "public"
                 },
                 {
-                    "Name": "entry_links",
+                    "Name": "task_links",
                     "DataFormat": "links"
                 }
             ],
             "RibosomeType": "js",
             "Functions": [
                 {
-                    "Name": "entryCreate",
+                    "Name": "taskCreate",
                     "CallingType": "json",
                     "Exposure": "public"
                 },
                 {
-                    "Name": "entryRead",
+                    "Name": "taskRead",
                     "CallingType": "json",
                     "Exposure": "public"
                 },
                 {
-                    "Name": "getEntries",
+                    "Name": "getTasks",
                     "CallingType": "json",
                     "Exposure": "public"
                 }
