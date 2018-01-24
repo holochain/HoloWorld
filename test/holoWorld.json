@@ -1,0 +1,34 @@
+{
+    "Tests": [
+        {
+            "Convey": "We can create a new holoWorldEntry",
+            "Zome": "HoloWorld",
+            "FnName": "holoWorldEntryCreate",
+            "Input": {
+                "content": "this is the entry body",
+                "timestamp": 12345
+            },
+            "Output": "%h%",
+            "Exposure": "public",
+            "Raw": false,
+            "Repeat": 0
+        },
+        {
+            "Convey": "We can read a holoWorldEntry",
+            "Zome": "HoloWorld",
+            "FnName": "holoWorldEntryRead",
+            "Input": "%h%",
+            "Output": {
+                "content": "this is the entry body",
+                "timestamp": 12345
+            },
+            "Exposure": "public",
+            "Raw": false,
+            "Repeat": 0
+        }
+    ],
+    "Identity": "",
+    "Fixtures": {
+        "Agents": null
+    }
+}

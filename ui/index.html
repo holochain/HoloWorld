@@ -4,48 +4,35 @@
   </head>
   <body>
     <form>
-      <p>Enter the content for the name of the task</p>
-      <label for="task">Task</label>
-      <input type="text" id="task" value="This task text will be saved in Holochain" />
-      <button type="submit" id="submitTask">Submit</button>
+      <p>Enter the text of the entry</p>
+      <p>This will be stored in Holochain and the hash key for the new entry will be shown</p>
+      <p>in the Hash text box below.</p>
+      <label for="entry">Entry</label>
+      <input type="text" id="holoWorldEntry" size="50" value="This text will be saved in Holochain" />
+      <button type="submit" id="submitEntry">Submit</button>
     </form>
 
     <form>
-      <p>Open the Developer Console and copy the hash key</p>
+      <p>Press the Read button and the hash key will be used to retrieve the entry</p>
       <label for="hash">Hash</label>
-      <input type="text" id="hash" />
-      <button type="submit" id="readTask">Read</button>
-    </form>
-
-    <form>
-      <p>Click the button to list all of the tasks stored in Holochain</p>
-      <label for="hash">List</label>
-      <button type="submit" id="listTasks">List</button>
-      <ul id="tasks" />
+      <input type="text" id="hash" size="50"/>
+      <input type="text" id="entryContent" />
+      <button type="submit" id="readEntry">Read</button>
     </form>
 
     <script type="text/javascript">
-      document.getElementById("submitTask").addEventListener("click", function(event){
+      document.getElementById("submitEntry").addEventListener("click", function(event){
           event.preventDefault()
-          taskCreate(document.getElementById('task').value)
-      });
-      document.getElementById("readTask").addEventListener("click", function(event){
-          event.preventDefault()
-          taskRead(document.getElementById('hash').value)
-      });
-      document.getElementById("listTasks").addEventListener("click", function(event){
-          event.preventDefault()
-          var taskList = document.getElementById("tasks");
-          getTasks(function(tasks){
-            tasks.forEach(function(task){
-              var li = document.createElement("li");
-              var txt = document.createTextNode(task.Entry.content);
-              li.appendChild(txt);
-              taskList.appendChild(li);
-              console.log(task.Entry.content);
-            });
+          holoWorldEntryCreate(document.getElementById('holoWorldEntry').value, function(hash){
+            document.getElementById('hash').value = hash
           })
-        });
-    </script>
+      });
+      document.getElementById("readEntry").addEventListener("click", function(event){
+          event.preventDefault()
+          holoWorldEntryRead(document.getElementById('hash').value, function(task){
+              document.getElementById('entryContent').value = task.content
+          })
+      });
+  </script>
   </body>
 </html>

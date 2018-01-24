@@ -1,6 +1,6 @@
 {
     "Version": 1,
-    "UUID": "152c6ba6-fc9d-11e7-925e-8c859027cd3b",
+    "UUID": "5e2bde1a-00b2-11e8-8916-8c859027cd3b",
     "Name": "HoloWorld",
     "Properties": {
         "description": "provides an application template",
@@ -14,34 +14,25 @@
         {
             "Name": "HoloWorld",
             "Description": "provide a sample zome",
-            "CodeFile": "HoloWorld.js",
+            "CodeFile": "holoWorldZome.js",
             "Entries": [
                 {
-                    "Name": "task",
+                    "Name": "holoWorldEntry",
                     "DataFormat": "json",
                     "Schema": "",
-                    "SchemaFile": "task.json",
+                    "SchemaFile": "holoWorldEntry.json",
                     "Sharing": "public"
-                },
-                {
-                    "Name": "task_links",
-                    "DataFormat": "links"
                 }
             ],
             "RibosomeType": "js",
             "Functions": [
                 {
-                    "Name": "taskCreate",
+                    "Name": "holoWorldEntryCreate",
                     "CallingType": "json",
                     "Exposure": "public"
                 },
                 {
-                    "Name": "taskRead",
-                    "CallingType": "json",
-                    "Exposure": "public"
-                },
-                {
-                    "Name": "getTasks",
+                    "Name": "holoWorldEntryRead",
                     "CallingType": "json",
                     "Exposure": "public"
                 }
