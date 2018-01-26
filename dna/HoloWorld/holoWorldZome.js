@@ -1,98 +1,71 @@
 'use strict';
 
-// -----------------------------------------------------------------
-//  This stub Zome code file was auto-generated
-// -----------------------------------------------------------------
+// CUSTOM METHOD IMPLEMENTATIONS
 
 /**
- * Called only when your source chain is generated
- * @return {boolean} success
+ * Called to create a new holoWorld entry
+ * @param {object} entry - the entry object, containing 'content' and 'stamp' properties
+ * @return {string} the hash of the new commited entry
  */
-function genesis() {
-  // any genesis code here
-  return true;
+function holoWorldEntryCreate (entry) {
+  return commit('holoWorldEntry', entry)
+}
+
+/**
+ * Called to retrieve an existing holoWorld entry
+ * @param {string} hash - the hash of the entry to retrieve
+ * @return {object} the holoWorld entry object
+ */
+function holoWorldEntryRead (hash) {
+  // at the moment, we have to parse the response
+  // this won't be true for much longer, it will be a json object
+  return JSON.parse(get(hash))
 }
 
 // -----------------------------------------------------------------
-//  validation functions for every DHT entry change
+//  validation functions for every DHT entry change, called automatically by holochain
 // -----------------------------------------------------------------
 
-/**
- * Called to validate any changes to the DHT
- * @param {string} entryName - the name of entry being modified
- * @param {*} entry - the entry data to be set
- * @param {?} header - ?
- * @param {?} pkg - ?
- * @param {?} sources - ?
- * @return {boolean} is valid?
- */
 function validateCommit (entryName, entry, header, pkg, sources) {
   switch (entryName) {
     case 'holoWorldEntry':
-      // validation code here
-      return true
+      // there is no complex validation to do in this case, just return true
+      return true;
     default:
-      // invalid entry name!!
-      return false
+      // invalid entry name
+      return false;
   }
 }
 
-/**
- * Called to validate any changes to the DHT
- * @param {string} entryName - the name of entry being modified
- * @param {*}entry - the entry data to be set
- * @param {?} header - ?
- * @param {?} pkg - ?
- * @param {?} sources - ?
- * @return {boolean} is valid?
- */
 function validatePut (entryName, entry, header, pkg, sources) {
   switch (entryName) {
     case 'holoWorldEntry':
-      // validation code here
-      return true
+      // there is no complex validation to do in this case, just return true
+      return true;
     default:
-      // invalid entry name!!
-      return false
+      // invalid entry name
+      return false;
   }
 }
 
-/**
- * Called to validate any changes to the DHT
- * @param {string} entryName - the name of entry being modified
- * @param {*} entry- the entry data to be set
- * @param {?} header - ?
- * @param {*} replaces - the old entry data
- * @param {?} pkg - ?
- * @param {?} sources - ?
- * @return {boolean} is valid?
- */
 function validateMod (entryName, entry, header, replaces, pkg, sources) {
   switch (entryName) {
-    case "sampleEntry":
-      // validation code here
-      return false;
+    case 'holoWorldEntry':
+      // there is no complex validation to do in this case, just return true
+      return true;
     default:
-      // invalid entry name!!
+      // invalid entry name
       return false;
   }
 }
 
-/**
- * Called to validate any changes to the DHT
- * @param {string} entryName - the name of entry being modified
- * @param {string} hash - the hash of the entry to remove
- * @param {?} pkg - ?
- * @param {?} sources - ?
- * @return {boolean} is valid?
- */
 function validateDel (entryName,hash, pkg, sources) {
   switch (entryName) {
-    case "sampleEntry":
-      // validation code here
-return false;
+    case 'holoWorldEntry':
+      // there is no complex validation to do in this case, just return true
+      return true;
     default:
-      // invalid entry name!!
+      // invalid entry name
       return false;
   }
 }
@@ -124,10 +97,10 @@ function validateDelPkg (entryName) {
   return null;
 }
 
-function holoWorldEntryCreate (entry) {
-  return commit('holoWorldEntry', entry)
-}
-
-function holoWorldEntryRead (hash) {
-  return JSON.parse(get(hash))
+/**
+ * Called only when your source chain is generated
+ * @return {boolean} success
+ */
+function genesis() {
+  return true;
 }
