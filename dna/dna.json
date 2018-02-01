@@ -7,8 +7,9 @@
         "language": "en"
     },
     "PropertiesSchemaFile": "properties_schema.json",
-    "BasedOn": {
-        "H": null
+    "RequiresVersion": 18,
+    "DHTConfig": {
+        "HashType": "sha2-256"
     },
     "Zomes": [
         {
@@ -19,7 +20,6 @@
                 {
                     "Name": "holoWorldEntry",
                     "DataFormat": "json",
-                    "Schema": "",
                     "SchemaFile": "holoWorldEntry.json",
                     "Sharing": "public"
                 }
@@ -36,18 +36,7 @@
                     "CallingType": "json",
                     "Exposure": "public"
                 }
-            ],
-            "BridgeFuncs": null,
-            "BridgeTo": ""
+            ]
         }
-    ],
-    "RequiresVersion": 18,
-    "DHTConfig": {
-        "HashType": "sha2-256",
-        "NeighborhoodSize": 0
-    },
-    "Progenitor": {
-        "Identity": "",
-        "PubKey": null
-    }
+    ]
 }
