@@ -17,7 +17,9 @@
             "Convey": "We can read a holoWorldEntry",
             "Zome": "HoloWorld",
             "FnName": "holoWorldEntryRead",
-            "Input": "%h%",
+            "Input": {
+                "hash": "%h%"
+            },
             "Output": {
                 "content": "this is the entry body",
                 "timestamp": 12345

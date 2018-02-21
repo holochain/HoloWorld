@@ -8,11 +8,12 @@ function holoWorldEntryCreate (entry) {
 }
 
 // retrieves a holoWorldEntry entry
-function holoWorldEntryRead (hash) {
+function holoWorldEntryRead (params) {
   // at the moment, to return the entry as JSON
   // we have to use JSON.parse because the entry is a string
   // soon this will be fixed and the JSON.parse can be removed
-  return JSON.parse(get(hash))
+  debug(params.hash)
+  return JSON.parse(get(params.hash))
 }
 
 /**
