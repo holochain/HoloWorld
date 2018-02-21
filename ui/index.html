@@ -1,1 +1,38 @@
-<!DOCTYPE html><html lang="en" dir="ltr"><head><meta charset="utf-8"><meta name="viewport" content="user-scalable=0,initial-scale=1,minimum-scale=1,width=device-width,height=device-height"><meta name="theme-color" content="#000000"><title>My page</title><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"/></head><body><div id="root"></div><script type="text/javascript" src="/static/js/main.7a9c97b2.js"></script></body></html>
+<html>
+  <head>
+    <script type="text/javascript" src="/HoloWorld.js"></script>
+  </head>
+  <body>
+    <form>
+      <p>Enter the text of the entry</p>
+      <p>This will be stored in Holochain and the hash key for the new entry will be shown</p>
+      <p>in the Hash text box below.</p>
+      <label for="entry">Entry</label>
+      <input type="text" id="holoWorldEntry" size="50" value="This text will be saved in Holochain" />
+      <button type="submit" id="submitEntry">Submit</button>
+    </form>
+
+    <form>
+      <p>Press the Read button and the hash key will be used to retrieve the entry</p>
+      <label for="hash">Hash</label>
+      <input type="text" id="hash" size="50"/>
+      <input type="text" id="entryContent" />
+      <button type="submit" id="readEntry">Read</button>
+    </form>
+
+    <script type="text/javascript">
+      document.getElementById("submitEntry").addEventListener("click", function(event){
+          event.preventDefault()
+          holoWorldEntryCreate(document.getElementById('holoWorldEntry').value, function(hash){
+            document.getElementById('hash').value = hash
+          })
+      });
+      document.getElementById("readEntry").addEventListener("click", function(event){
+          event.preventDefault()
+          holoWorldEntryRead(document.getElementById('hash').value, function(task){
+              document.getElementById('entryContent').value = task.content
+          })
+      });
+  </script>
+  </body>
+</html>
