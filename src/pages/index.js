@@ -59,44 +59,48 @@ class Index extends React.Component {
     const { classes, state } = this.props;
     return (
       <div className={classes.root}>
-        <form className={classes.container} noValidate autoComplete='off'>
-          <TextField
-            id='entry'
-            label='Entry'
-            onChange={this.handleChangeText}
-            className={classes.textField}
-            margin='normal'
-          />
-          <TextField
-            id='hash'
-            label='Hash'
-            className={classes.textField}
-            value={this.props.entryHash}
-            margin='normal'
-          />
-          <Button variant="raised" color="secondary" onClick={this.onEntrySubmit}>
-            Submit
-          </Button>
-        </form>
-        <form className={classes.container} noValidate autoComplete='off'>
-          <TextField
-            id='hash'
-            label='Hash to Read from Holochain'
-            className={classes.textField}
-            onChange={this.handleChangeHash}
-            margin='normal'
-          />
-          <TextField
-            id='entryRead'
-            label='Entry Read from Holchain'
-            className={classes.textField}
-            value={this.props.entryText}
-            margin='normal'
-          />
-          <Button variant="raised" color="secondary" onClick={this.onEntryRead}>
-            Read
-          </Button>
-        </form>
+        <div>
+          <form noValidate autoComplete='off'>
+            <TextField
+              id='entry'
+              label='Entry'
+              onChange={this.handleChangeText}
+              className={classes.textField}
+              margin='normal'
+            />
+            <TextField
+              id='hash'
+              label='Hash'
+              className={classes.textField}
+              value={this.props.entryHash}
+              margin='normal'
+            />
+            <Button variant="raised" color="secondary" onClick={this.onEntrySubmit}>
+              Submit
+            </Button>
+          </form>
+        </div>
+        <div>
+          <form noValidate autoComplete='off'>
+            <TextField
+              id='hash'
+              label='Hash to Read from Holochain'
+              className={classes.textField}
+              onChange={this.handleChangeHash}
+              margin='normal'
+            />
+            <TextField
+              id='entryRead'
+              label='Entry Read from Holchain'
+              className={classes.textField}
+              value={this.props.entryText}
+              margin='normal'
+            />
+            <Button variant="raised" color="secondary" onClick={this.onEntryRead}>
+              Read
+            </Button>
+          </form>
+        </div>
       </div>
     );
   }

@@ -5,7 +5,7 @@ const initialState = {
   entryText: ''
 }
 
-export default function holochatApp (state = initialState, action) {
+export default function holoWorld (state = initialState, action) {
   const { type, meta, payload } = action
   switch (type) {
     case A.HOLOWORLDENTRYCREATE:

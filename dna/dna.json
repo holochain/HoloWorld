@@ -11,6 +11,7 @@
     "DHTConfig": {
         "HashType": "sha2-256"
     },
+    "returnError": false,
     "Zomes": [
         {
             "Name": "HoloWorld",
@@ -22,6 +23,10 @@
                     "DataFormat": "json",
                     "SchemaFile": "holoWorldEntry.json",
                     "Sharing": "public"
+                },
+                {
+                    "Name": "agent_entry_link",
+                    "DataFormat": "links"
                 }
             ],
             "RibosomeType": "js",
@@ -34,6 +39,55 @@
                 {
                     "Name": "holoWorldEntryRead",
                     "CallingType": "json",
+                    "Exposure": "public"
+                },
+                {
+                    "Name": "holoWorldBridged",
+                    "CallingType": "string",
+                    "Exposure": "public"
+                },
+                {
+                    "Name": "holoWorldEntryCreateAndLinkToAnchor",
+                    "CallingType": "json",
+                    "Exposure": "public"
+                }
+            ],
+            "BridgeTo": "HoloWorldBridge"
+        },
+        {
+            "Name": "anchors",
+            "Description": "anchors mixin",
+            "RibosomeType": "js",
+            "CodeFile": "anchors.js",
+            "Config": {
+              "returnErrors": true
+            },
+            "Entries": [
+                {
+                    "Name": "anchor",
+                    "DataFormat": "json",
+                    "SchemaFile": "anchor.json",
+                    "Sharing": "public"
+                },
+                {
+                    "Name": "anchor_link",
+                    "DataFormat": "links"
+                }
+            ],
+            "Functions": [
+                {
+                    "Name": "anchor",
+                    "CallingType": "json",
+                    "Exposure": "public"
+                },
+                {
+                    "Name": "exists",
+                    "CallingType": "json",
+                    "Exposure": "public"
+                },
+                {
+                    "Name": "anchors",
+                    "CallingType": "string",
                     "Exposure": "public"
                 }
             ]

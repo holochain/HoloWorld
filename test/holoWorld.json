@@ -27,6 +27,29 @@
             "Exposure": "public",
             "Raw": false,
             "Repeat": 0
+        },
+        {
+            "Convey": "Use the Anchors Zome to link to the Anchor for Philip",
+            "Zome": "HoloWorld",
+            "FnName": "holoWorldEntryCreateAndLinkToAnchor",
+            "Input": {
+                "content": "Link this entry to the anchor",
+                "timestamp": 12345
+            },
+            "Output": "%h6%",
+            "Exposure": "public",
+            "Raw": false,
+            "Repeat": 0
+        },
+        {
+            "Convey": "Use the Bridged Zome  to prepend the 'bridge-' prefix to any value, this will fail when not bridged to HoloWorldBridge",
+            "Zome": "HoloWorld",
+            "FnName": "holoWorldBridged",
+            "Input": "Testing bridge prefix",
+            "Output": "bridged-Testing bridge prefix",
+            "Exposure": "public",
+            "Raw": false,
+            "Repeat": 0
         }
     ],
     "Identity": "",

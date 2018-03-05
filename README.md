@@ -34,3 +34,15 @@ This builds the optimised build into the ```ui``` folder from the src
   hcdev web
 ```
 Now you can access the UI from http://localhost:4141
+
+## View Chain & DHT Data
+You can view the data in your local chain and DHT by executing the following.  Make sure you have jq installed to get the pretty colours.  If not just remove the | jq . part.
+
+```
+  HOLOPATH=/Users/philipbeadle/.holochaindev hcadmin dump HoloWorld --chain --json | jq .
+  HOLOPATH=/Users/philipbeadle/.holochaindev hcadmin dump HoloWorld --dht --json | jq .
+```
+
+```
+  hcdev --bridgeTo=../HoloWorldBridge test
+```

@@ -4,7 +4,7 @@ import { compact } from 'lodash'
 import { applyMiddleware, compose, createStore } from 'redux'
 import promiseMiddleware from 'redux-promise'
 import { requestSendingMiddleware, hcMiddleware } from 'hc-redux-middleware'
-import holochatApp from './reducers'
+import holoWorld from './reducers'
 import Root from './root'
 
 const middleware = compact([
@@ -14,5 +14,5 @@ const middleware = compact([
 ])
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
-let store = createStore(holochatApp, undefined, composeEnhancers(applyMiddleware(...middleware)))
+let store = createStore(holoWorld, undefined, composeEnhancers(applyMiddleware(...middleware)))
 ReactDOM.render(<Root store={store} />, document.querySelector('#root'))
