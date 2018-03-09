@@ -22,6 +22,6 @@ function holoWorldEntryRead (hash, callback) {
       callback(JSON.parse(xhr.responseText))
     }
   }
-  var data = JSON.stringify(hash)
+  var data = JSON.stringify({ hash: hash })
   xhr.send(data)
 }
