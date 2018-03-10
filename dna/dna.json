@@ -50,6 +50,11 @@
                     "Name": "holoWorldEntryCreateAndLinkToAnchor",
                     "CallingType": "json",
                     "Exposure": "public"
+                },
+                {
+                    "Name": "getEntriesLinkedToAnchor",
+                    "CallingType": "string",
+                    "Exposure": "public"
                 }
             ],
             "BridgeTo": "HoloWorldBridge"

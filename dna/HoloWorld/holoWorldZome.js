@@ -42,6 +42,12 @@ function holoWorldEntryCreateAndLinkToAnchor (entry) {
   return hash
 }
 
+function getEntriesLinkedToAnchor (handle) {
+  var links = getLinks(makeHash('anchor', {anchorType: 'user', anchorText: handle}), '', {Load:true});
+  debug(links)
+  return links
+}
+
 function addAnchor(anchorType, anchorText){
   return call('anchors', 'anchor', {anchorType: anchorType, anchorText: anchorText}).replace(/"/g, '');
 }

@@ -42,6 +42,15 @@
             "Repeat": 0
         },
         {
+            "Convey": "List all the entries for the Anchor for 'philip'",
+            "Zome": "HoloWorld",
+            "Input": "var links = getEntriesLinkedToAnchor('philip'); links.length==1",
+            "Output": true,
+            "Exposure": "public",
+            "Raw": true,
+            "Repeat": 0
+        },
+        {
             "Convey": "Use the Bridged Zome  to prepend the 'bridge-' prefix to any value, this will fail when not bridged to HoloWorldBridge",
             "Zome": "HoloWorld",
             "FnName": "holoWorldBridged",
