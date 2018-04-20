@@ -1,0 +1,18 @@
+{
+    "Tests": [
+        {
+            "Convey": "write a holoText entry",
+            "Zome": "readerWriter",
+            "FnName": "holoTextWrite",
+            "Input": "Hello World",
+            "Output": "%h%"
+        },
+        {
+            "Convey": "read a holoText entry",
+            "Zome": "readerWriter",
+            "FnName": "holoTextRead",
+            "Input": "%h%",
+            "Output": "Hello World"
+        }
+    ]
+}
