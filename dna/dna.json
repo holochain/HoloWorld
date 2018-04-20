@@ -1,0 +1,39 @@
+{
+    "Version": 1,
+    "UUID": "11842b00-4489-11e8-ba07-3c0754045586",
+    "Name": "HoloWorld",
+    "Properties": {
+        "description": "the hello world app for Holochain",
+        "language": "en"
+    },
+    "PropertiesSchemaFile": "properties_schema.json",
+    "RequiresVersion": 23,
+    "DHTConfig": {
+        "HashType": "sha2-256"
+    },
+    "Zomes": [
+        {
+            "Name": "readerWriter",
+            "Description": "read and write data",
+            "CodeFile": "readerWriter.js",
+            "RibosomeType": "js",
+            "Entries": [
+                {
+                    "Name": "holoText",
+                    "DataFormat": "string",
+                    "Sharing": "private"
+                }
+            ],
+            "Functions": [
+                {
+                    "Name": "holoTextWrite",
+                    "CallingType": "string"
+                },
+                {
+                    "Name": "holoTextRead",
+                    "CallingType": "string"
+                }
+            ]
+        }
+    ]
+}
