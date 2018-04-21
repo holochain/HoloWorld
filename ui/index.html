@@ -1,0 +1,38 @@
+<html>
+  <head>
+    <script type="text/javascript" src="/HoloWorld.js"></script>
+  </head>
+  <body>
+    <form>
+      <p>Enter the text of the entry</p>
+      <p>This will be stored in Holochain and the hash key for the new entry will be shown</p>
+      <p>in the Hash text box below.</p>
+      <label for="entry">Entry</label>
+      <input type="text" id="holoWorldEntry" size="50" value="This text will be saved in Holochain" />
+      <button type="submit" id="submitEntry">Submit</button>
+    </form>
+
+    <form>
+      <p>Press the Read button and the hash key will be used to retrieve the entry</p>
+      <label for="hash">Hash</label>
+      <input type="text" id="hash" size="50"/>
+      <input type="text" id="entryContent" />
+      <button type="submit" id="readEntry">Read</button>
+    </form>
+
+    <script type="text/javascript">
+      document.getElementById("submitEntry").addEventListener("click", function(event){
+          event.preventDefault()
+          holoWorldEntryCreate(document.getElementById('holoWorldEntry').value, function(hash){
+            document.getElementById('hash').value = hash
+          })
+      });
+      document.getElementById("readEntry").addEventListener("click", function(event){
+          event.preventDefault()
+          holoWorldEntryRead(document.getElementById('hash').value, function(task){
+              document.getElementById('entryContent').value = task
+          })
+      });
+  </script>
+  </body>
+</html>

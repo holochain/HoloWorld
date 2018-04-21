@@ -26,6 +26,18 @@ function validateCommit() {
 }
 
 /*
+  "validatePut" is a function which Holochain will call every time
+  that it attempts to add a new entry to its local DHT. 
+  Unlike the other functions in this file, the function
+  can be triggered as a result of gossiping with other nodes, and being
+  told to write a new entry (someone elses or ones own) to its DHT.
+  It must return true or false. If false, the entry will not be written.
+*/
+function validatePut() {
+  return true
+}
+
+/*
   "holoTextWrite" is a custom function that we declared in our dna.json file.
   It accepts a string of text as its input and writes that text as an entry
   into the local source chain, using the native function "commit". As noted above,
@@ -48,9 +60,7 @@ function holoTextWrite(text) {
 */
 function holoTextRead(hash) {
   // "get" is a native function in Holochain
-  // because in dna.json holoText entries have 'Sharing: "private"'
-  // we need to pass 'Local: true' which means to look not
-  // just in the DHT but in the local source chain for the entry with that hash
-  var holoText = get(hash, { Local: true })
+  // Look for the entry in the DHT.
+  var holoText = get(hash)
   return holoText
 }

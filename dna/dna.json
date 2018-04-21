@@ -21,17 +21,19 @@
                 {
                     "Name": "holoText",
                     "DataFormat": "string",
-                    "Sharing": "private"
+                    "Sharing": "public"
                 }
             ],
             "Functions": [
                 {
                     "Name": "holoTextWrite",
-                    "CallingType": "string"
+                    "CallingType": "string",
+                    "Exposure": "public"
                 },
                 {
                     "Name": "holoTextRead",
-                    "CallingType": "string"
+                    "CallingType": "string",
+                    "Exposure": "public"
                 }
             ]
         }
