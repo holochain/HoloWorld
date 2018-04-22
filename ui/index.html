@@ -3,17 +3,21 @@
     <script type="text/javascript" src="/HoloWorld.js"></script>
   </head>
   <body>
+    <!-- two forms, which allow the user to interact with two app functions -->
     <form>
       <p>Enter the text of the entry</p>
-      <p>This will be stored in Holochain and the hash key for the new entry will be shown</p>
+      <p>This will be stored in Holochain and the hash key for the new entry</p>
+      <p>will be shown in the Hash text box below.</p>
       <p>in the Hash text box below.</p>
       <label for="entry">Entry</label>
-      <input type="text" id="holoWorldEntry" size="50" value="This text will be saved in Holochain" />
+      <input type="text" id="holoWorldEntry" size="50" 
+             value="This text will be saved in Holochain" />
       <button type="submit" id="submitEntry">Submit</button>
     </form>
 
     <form>
-      <p>Press the Read button and the hash key will be used to retrieve the entry</p>
+      <p>Press the Read button and the hash key will be used </p>
+      <p>to retrieve the entry from the Holochain.</p>
       <label for="hash">Hash</label>
       <input type="text" id="hash" size="50"/>
       <input type="text" id="entryContent" />
@@ -21,18 +25,20 @@
     </form>
 
     <script type="text/javascript">
+      // add event listeners to the two submit buttons to run 
+      // the functions defined in ui/HoloWorld.js
       document.getElementById("submitEntry").addEventListener("click", function(event){
-          event.preventDefault()
-          holoWorldEntryCreate(document.getElementById('holoWorldEntry').value, function(hash){
-            document.getElementById('hash').value = hash
-          })
+        event.preventDefault()
+        holoWorldEntryCreate(document.getElementById('holoWorldEntry').value, function(hash){
+          document.getElementById('hash').value = hash
+        })
       });
       document.getElementById("readEntry").addEventListener("click", function(event){
-          event.preventDefault()
-          holoWorldEntryRead(document.getElementById('hash').value, function(task){
-              document.getElementById('entryContent').value = task
-          })
+        event.preventDefault()
+        holoWorldEntryRead(document.getElementById('hash').value, function(task){
+          document.getElementById('entryContent').value = task.content
+        })
       });
-  </script>
+    </script>
   </body>
 </html>
