@@ -1,0 +1,66 @@
+<html>
+  <head>
+    <title>PeerVis</title>
+    <script type="text/javascript" src="./cytoscape.min.js"></script>
+    <style>
+      div#vis {
+          width: 100%;
+          height: 100%;
+          background: #DDD;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="vis"></div>
+
+    <script type="text/javascript">
+    var cy
+    var currentPeers = ""
+    function getPeers (callback) {
+        var xhr = new XMLHttpRequest()
+        var url = '/fn/peerVis/getPeers'
+        xhr.open('POST', url, true)
+        xhr.setRequestHeader('Content-type', 'application/json')
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === 4 && xhr.status === 200) {
+            callback(JSON.parse(xhr.responseText))
+          }
+        }
+        xhr.send("")
+      }
+      function addResultsToPage(peers) {
+        var peersTest = peers.sort().join('')
+        var isSame = peersTest === currentPeers
+        if (isSame) {
+          console.log('peer list is same')
+          // dont update, if peer list is the same
+          return
+        }
+        console.log('peer list is different')
+        // update the currentPeers cache
+        currentPeers = peersTest
+        if (cy) cy.destroy()
+        var elements = []
+        peers.forEach(function(p) {
+          elements.push({
+            group: 'nodes',
+            data: {
+              id: p.address
+            },
+            style: {
+              label: p.me ? "(me) " + p.address : p.address
+            }
+          })
+        })
+        cy = cytoscape({
+          container: document.getElementById('vis'),
+          elements: elements
+        })
+      }
+      
+      window.setInterval(function() {
+        getPeers(addResultsToPage)
+      }, 1000)
+    </script>
+  </body>
+</html>

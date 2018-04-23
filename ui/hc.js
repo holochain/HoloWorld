@@ -1,4 +1,4 @@
-function holoWorldEntryCreate (message, callback) {
+function holoTextWrite (message, callback) {
   var xhr = new XMLHttpRequest()
   var url = '/fn/readerWriter/holoTextWrite'
   xhr.open('POST', url, true)
@@ -11,7 +11,7 @@ function holoWorldEntryCreate (message, callback) {
   xhr.send(message)
 }
 
-function holoWorldEntryRead (hash, callback) {
+function holoTextRead (hash, callback) {
   var xhr = new XMLHttpRequest()
   var url = '/fn/readerWriter/holoTextRead'
   xhr.open('POST', url, true)

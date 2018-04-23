@@ -13,6 +13,28 @@
     },
     "Zomes": [
         {
+            "Name": "peerVis",
+            "Desription": "show whos online",
+            "CodeFile": "peerVis.js",
+            "RibosomeType": "js",
+            "Config": {
+                "ErrorHandling": "throwErrors"
+            },
+            "Entries": [
+                {
+                    "Name": "peerLink",
+                    "DataFormat": "links"
+                }
+            ],
+            "Functions": [
+                {
+                    "Name": "getPeers",
+                    "CallingType": "json",
+                    "Exposure": "public"
+                }
+            ]
+        },
+        {
             "Name": "readerWriter",
             "Description": "read and write data",
             "CodeFile": "readerWriter.js",
