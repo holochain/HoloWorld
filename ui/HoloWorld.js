@@ -13,8 +13,8 @@ function holoWorldEntryCreate (entry, callback) {
 
   // add the given callback to the request to be called when its state changes.
   xhr.onreadystatechange = function () {
-    if (hr.readyState === 4 && xhr.status === 200) {
-      callback(JSON.parse(xhr.responseText))
+    if (xhr.readyState === 4 && xhr.status === 200) {
+      callback(xhr.responseText)
     }
   }
 
@@ -45,7 +45,7 @@ function holoWorldEntryRead (hash, callback) {
   // add a callback function to be called on the response 
   xhr.onreadystatechange = function () {
     if (xhr.readyState === 4 && xhr.status === 200) {
-      callback(JSON.parse(xhr.responseText))
+      callback(xhr.responseText)
     }
   }
 
